@@ -10,10 +10,11 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 function App() {
   const [items, setItems] = useState([])
+  const [tempText, setTempText] = useState("Hello World!")
 
-  const tempText = "Hello World!"
   const pClick = () => { 
     console.log("Нажали на p")
+    setTempText(10)
   }
 
   useEffect(() => {
