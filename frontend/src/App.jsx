@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     document.title = `Вы нажали ${click} раз`
-  })
+  }, [click])
 
   return (
     <>
