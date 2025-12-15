@@ -12,27 +12,23 @@ const ItemList = () => {
       .catch(error => console.error(error))
   }, [])
 
-  if (items.length > 0) {
-    return (
-      <div>
-        <h1>Список вещей</h1>
-        
-        {items.map(item => (
-          <div key={item.id} className="item">
-            <strong>{item.name}</strong>
-            <div>{item.description}</div>
-            <div>{item.isAvailable ? 'В наличии :)' : 'Нет в наличии :('}</div>
-          </div>
-        ))}
-      </div>
-    )
-  } else {
-    return (
-      <div className="item">
-        <h3>Вещей нет</h3>
-      </div>
-    )
-  }
+  return (items.length > 0) ? (
+    <div>
+      <h1>Список вещей</h1>
+      
+      {items.map(item => (
+        <div key={item.id} className="item">
+          <strong>{item.name}</strong>
+          <div>{item.description}</div>
+          <div>{item.isAvailable ? 'В наличии :)' : 'Нет в наличии :('}</div>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div className="item">
+      <h3>Вещей нет</h3>
+    </div>
+  )
 }
 
 export default ItemList
