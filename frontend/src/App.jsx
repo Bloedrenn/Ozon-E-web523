@@ -11,6 +11,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 function App() {
   const [items, setItems] = useState([])
   const [tempText, setTempText] = useState("Hello World!")
+  const [userText, setUserText] = useState('')
 
   const pClick = () => { 
     console.log("Нажали на p")
@@ -39,6 +40,9 @@ function App() {
       {/* <img src='https://assets.avtocod.ru/storage/images/articles-2022/otnyud-ne-bmw-top-10-samykh-dorogikh-mashin-mira-v-2022-godu/otnyud-ne-bmw-top-10-samykh-dorogikh-mashin-mira-v-2022-godu-3-min.jpg' /> */}
       {/* <img src={carImgUrl} /> */}
       <Image imageUrl={carImgUrl} />
+
+      <div>Вы ввели: {userText}</div>
+      <input onChange={event => setUserText(event.target.value)} />
     </>
   )
 }
