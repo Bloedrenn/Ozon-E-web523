@@ -43,6 +43,8 @@ function App() {
 
       <div>Вы ввели: {userText}</div>
       <input onChange={event => setUserText(event.target.value)} />
+
+      <Header />
     </>
   )
 }
