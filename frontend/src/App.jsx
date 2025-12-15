@@ -1,5 +1,6 @@
 import Header from '@components/UI/Header'
 import ItemList from '@components/Item/ItemList'
+import AddItem from '@components/Item/Forms/AddItem'
 
 function App() {
   return (
@@ -9,7 +10,9 @@ function App() {
       <main>
         <ItemList />
       </main>
-      <aside></aside>
+      <aside>
+        <AddItem />
+      </aside>
     </>
   )
 }
