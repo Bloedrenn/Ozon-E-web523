@@ -1,19 +1,6 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-
 import ItemCard from '@components/Item/ItemCard';
 
-const API_URL = import.meta.env.VITE_API_URL;
-
-const ItemList = () => {
-  const [items, setItems] = useState([])
-  
-  useEffect(() => {
-    axios.get(`${API_URL}/items`)
-      .then(response => setItems(response.data))
-      .catch(error => console.error(error))
-  }, [])
-
+const ItemList = ({ items }) => {
   return (items.length > 0) ? (
     <div>
       <h1>Список вещей</h1>
