@@ -31,7 +31,13 @@ const AddItem = ({ onAdd }) => {
 
       <button
         type='button'
-        onClick={() => onAdd({ name, description, isAvailable })}
+        onClick={() => {
+          onAdd({ name, description, isAvailable })
+          // Сбрасываем состояния
+          setName("")
+          setDescription("")
+          setIsAvailable(false)
+        }}
       >
         Добавить
       </button>
