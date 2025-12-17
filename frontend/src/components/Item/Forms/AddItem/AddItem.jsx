@@ -1,10 +1,6 @@
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 
 const AddItem = ({ onAdd }) => {
-  const [name, setName] = useState("")
-  const [description, setDescription] = useState("")
-  const [isAvailable, setIsAvailable] = useState(false)
-
   // Создаем ref для формы
   const itemCreateForm = useRef(null)
 
@@ -12,19 +8,19 @@ const AddItem = ({ onAdd }) => {
     <form ref={itemCreateForm}>
       <input 
         type="text"
+        name="name"
         placeholder='Название' 
-        onChange={e => setName(e.target.value)} 
       />
       <textarea 
+        name="description"
         placeholder='Описание' 
-        onChange={(e) => setDescription(e.target.value)}
       ></textarea>
 
       <div>
         <input 
           type='checkbox' 
+          name="isAvailable"
           id='isAvailable' 
-          onChange={(e) => setIsAvailable(e.target.checked)} 
         />
         <label htmlFor='isAvailable'>В наличии?</label>
       </div>
@@ -32,7 +28,8 @@ const AddItem = ({ onAdd }) => {
       <button
         type='button'
         onClick={() => {
-          onAdd({ name, description, isAvailable })
+          const newItem = Object.fromEntries(new FormData(itemCreateForm.current))
+          onAdd(newItem)
           // Сбрасываем поля формы
           itemCreateForm.current.reset()
         }}
