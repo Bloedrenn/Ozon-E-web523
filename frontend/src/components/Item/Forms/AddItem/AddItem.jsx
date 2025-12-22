@@ -4,6 +4,15 @@ const AddItem = ({ onAdd }) => {
   // Создаем ref для формы
   const itemCreateForm = useRef(null)
 
+  const handleSubmit = () => {
+    const newItem = Object.fromEntries(new FormData(itemCreateForm.current))
+    // Преобразуем isAvailable из строки в boolean
+    newItem.isAvailable = newItem.isAvailable === "on"
+    onAdd(newItem)
+    // Сбрасываем поля формы
+    itemCreateForm.current.reset()
+  }
+
   return (
     <form ref={itemCreateForm}>
       <input 
@@ -27,14 +36,7 @@ const AddItem = ({ onAdd }) => {
 
       <button
         type='button'
-        onClick={() => {
-          const newItem = Object.fromEntries(new FormData(itemCreateForm.current))
-          // Преобразуем isAvailable из строки в boolean
-          newItem.isAvailable = newItem.isAvailable === "on"
-          onAdd(newItem)
-          // Сбрасываем поля формы
-          itemCreateForm.current.reset()
-        }}
+        onClick={handleSubmit}
       >
         Добавить
       </button>
