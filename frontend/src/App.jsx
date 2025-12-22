@@ -22,12 +22,17 @@ function App() {
     axios.post(`${API_URL}/items`, newItem)
   }
 
+  const deleteItem = (id) => {
+    setItems(items.filter(item => item.id !== id))
+    axios.delete(`${API_URL}/items/${id}`)
+  }
+
   return (
     <>
       <Header text="Шапка сайта" title="ХЕЛЛО" />
       
       <main>
-        <ItemList items={items} />
+        <ItemList items={items} onDelete={deleteItem} />
       </main>
       <aside>
         <AddItem onAdd={addItem} />

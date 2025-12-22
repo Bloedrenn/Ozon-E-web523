@@ -1,9 +1,9 @@
 import { IoCloseCircleSharp } from 'react-icons/io5';
 import { FaEdit } from "react-icons/fa";
 
-const ItemCard = ({ item }) => (
+const ItemCard = ({ item, onDelete }) => (
   <div className="item">
-    <IoCloseCircleSharp className='delete-icon' size={15} />
+    <IoCloseCircleSharp onClick={() => onDelete(item.id)} className='delete-icon' size={15} />
     <FaEdit className='edit-icon' size={15} />
     <strong>{item.name}</strong>
     <div>{item.description}</div>

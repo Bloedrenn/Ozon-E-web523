@@ -1,12 +1,12 @@
 import ItemCard from '@components/Item/ItemCard';
 
-const ItemList = ({ items }) => {
+const ItemList = ({ items, onDelete }) => {
   return (items.length > 0) ? (
     <div>
       <h1>Список вещей</h1>
       
       {items.map(item => (
-        <ItemCard key={item.id} item={item} />
+        <ItemCard key={item.id} item={item} onDelete={onDelete} />
       ))}
     </div>
   ) : (
