@@ -29,6 +29,8 @@ const AddItem = ({ onAdd }) => {
         type='button'
         onClick={() => {
           const newItem = Object.fromEntries(new FormData(itemCreateForm.current))
+          // Преобразуем isAvailable из строки в boolean
+          newItem.isAvailable = newItem.isAvailable === "on"
           onAdd(newItem)
           // Сбрасываем поля формы
           itemCreateForm.current.reset()
