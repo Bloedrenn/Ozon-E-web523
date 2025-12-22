@@ -22,6 +22,11 @@ function App() {
     axios.post(`${API_URL}/items`, newItem)
   }
 
+  const editItem = (editedItem) => {
+    setItems(items.map(item => item.id === editedItem.id ? editedItem : item))
+    axios.put(`${API_URL}/items/${editedItem.id}`, editedItem)
+  }
+
   const deleteItem = (id) => {
     setItems(items.filter(item => item.id !== id))
     axios.delete(`${API_URL}/items/${id}`)
@@ -32,7 +37,7 @@ function App() {
       <Header text="Шапка сайта" title="ХЕЛЛО" />
       
       <main>
-        <ItemList items={items} onDelete={deleteItem} />
+        <ItemList items={items} onEdit={editItem} onDelete={deleteItem} />
       </main>
       <aside>
         <AddItem onAdd={addItem} />
