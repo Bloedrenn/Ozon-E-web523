@@ -8,6 +8,7 @@ import AddItem from '@components/Item/Forms/AddItem'
 const API_URL = import.meta.env.VITE_API_URL;
 
 function App() {
+  // показать пример массив
   const [items, setItems] = useState([])
 
   useEffect(() => {
@@ -28,8 +29,10 @@ function App() {
   }
 
   const deleteItem = (id) => {
-    setItems(items.filter(item => item.id !== id))
-    axios.delete(`${API_URL}/items/${id}`)
+    if (confirm('Вы уверены, что хотите удалить эту вещь?')) {
+      setItems(items.filter(item => item.id !== id))
+      axios.delete(`${API_URL}/items/${id}`)
+    }
   }
 
   return (
