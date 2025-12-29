@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import axios from 'axios'
 
-const API_URL = import.meta.env.VITE_API_URL
+import { getItemApi } from '@api/itemsApi.js'
 
 const ItemDetailPage = () => {
   const { id } = useParams()
@@ -11,7 +10,7 @@ const ItemDetailPage = () => {
   const [itemError, setItemError] = useState(null)
 
   useEffect(() => {
-    axios.get(`${API_URL}/items/${id}/`)
+    getItemApi(id)
       .then(response => {
         setItem(response.data)
         setItemLoading(false)

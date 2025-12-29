@@ -1,18 +1,17 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import ItemDetailPage from '@pages/ItemDetailPage'
 import HomePage from '@pages/HomePage'
 
-const API_URL = import.meta.env.VITE_API_URL;
+import { getAllItemsApi, createItemApi, updateItemApi, deleteItemApi } from '@api/itemsApi.js'
 
 function App() {
   // показать пример массив
   const [items, setItems] = useState([])
 
   useEffect(() => {
-    axios.get(`${API_URL}/items`)
+    getAllItemsApi()
       .then(response => setItems(response.data))
       .catch(error => console.error(error))
   }, [])
@@ -20,18 +19,18 @@ function App() {
   const addItem = (newItem) => {
     newItem.id = String(items.length + 1)
     setItems([...items, newItem])
-    axios.post(`${API_URL}/items`, newItem)
+    createItemApi(newItem)
   }
 
   const editItem = (editedItem) => {
     setItems(items.map(item => item.id === editedItem.id ? editedItem : item))
-    axios.put(`${API_URL}/items/${editedItem.id}`, editedItem)
+    updateItemApi(editedItem.id, editedItem)
   }
 
   const deleteItem = (id) => {
     if (confirm('Вы уверены, что хотите удалить эту вещь?')) {
       setItems(items.filter(item => item.id !== id))
-      axios.delete(`${API_URL}/items/${id}`)
+      deleteItemApi(id)
     }
   }
 
