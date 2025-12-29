@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import ItemDetailPage from '@pages/ItemDetailPage'
 import HomePage from '@pages/HomePage'
+import Test from '@components/Test.jsx'
 
 import { getAllItemsApi, createItemApi, updateItemApi, deleteItemApi } from '@api/itemsApi.js'
 
@@ -46,6 +47,7 @@ function App() {
           />
         } />
         <Route path="/items/:id" element={<ItemDetailPage />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </Router>
   )
