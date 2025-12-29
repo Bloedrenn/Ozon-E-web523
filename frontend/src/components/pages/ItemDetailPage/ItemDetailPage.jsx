@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom'
 
 import { getItemApi } from '@api/itemsApi.js'
 
+import styles from './ItemDetailPage.module.css'
+
 const ItemDetailPage = () => {
   const { id } = useParams()
   const [item, setItem] = useState(null)
@@ -26,11 +28,11 @@ const ItemDetailPage = () => {
   if (itemError) return <div>{itemError}</div> 
 
   return (
-    <div className="item-detail">
+    <div className={styles.itemDetail}>
       <Link to="/">← На главную</Link>
       <h1>{item.name}</h1>
       <p>{item.description}</p>
-      <div className="availability">
+      <div className={styles.availability}>
         {item.isAvailable ? 'Есть в наличии' : 'Нет в наличии'}
       </div>
     </div>
