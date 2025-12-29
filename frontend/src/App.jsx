@@ -2,9 +2,8 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-import ItemList from '@components/Item/ItemList'
-import AddItem from '@components/Item/Forms/AddItem'
 import ItemDetailPage from '@pages/ItemDetailPage'
+import HomePage from '@pages/HomePage'
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -40,14 +39,12 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={
-          <>
-            <main>
-              <ItemList items={items} onEdit={editItem} onDelete={deleteItem} />
-            </main>
-            <aside>
-              <AddItem onAdd={addItem} />
-            </aside>
-          </>
+          <HomePage 
+            items={items} 
+            onAdd={addItem}
+            onEdit={editItem}
+            onDelete={deleteItem}
+          />
         } />
         <Route path="/items/:id" element={<ItemDetailPage />} />
       </Routes>
