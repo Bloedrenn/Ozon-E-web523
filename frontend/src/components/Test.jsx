@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 
 import { createAddCustomerAction, createRemoveCustomerAction } from '@store/reducers/customersReducer.js'
+import { getCustomers } from '@store/thunks/customersThunks.js'
 
 const Test = () => {
   const dispatch = useDispatch()
@@ -39,6 +40,7 @@ const Test = () => {
 
       <div style={{backgroundColor: '#000', marginTop: '20px'}}>
         <button onClick={() => addCustomer()}>Добавить клиента</button>
+        <button onClick={() => dispatch(getCustomers())}>Получить клиентов из базы</button>
         {
           customersList.length > 0 ?
             <div>
