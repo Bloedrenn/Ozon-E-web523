@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 
+import { createAddMoneyAction, createGetMoneyAction } from '@store/slices/bankSlice.js'
 import { createAddCustomerAction, createRemoveCustomerAction } from '@store/reducers/customersReducer.js'
 import { getCustomers } from '@store/thunks/customersThunks.js'
 
@@ -9,11 +10,11 @@ const Test = () => {
   const customersList = useSelector(state => state.customers.customersList)
 
   const addMoney = (amount) => {
-    dispatch({ type: "ADD_MONEY", payload: Number(amount) })
+    dispatch(createAddMoneyAction(Number(amount))) // Пример: dispatch({ type: "addMoney", payload: 33 })
   }
 
   const getMoney = (amount) => {
-    dispatch({ type: "GET_MONEY", payload: Number(amount) })
+    dispatch(createGetMoneyAction(Number(amount))) // Пример: dispatch({ type: "getMoney", payload: 25 })
   }
 
   const addCustomer = () => {
