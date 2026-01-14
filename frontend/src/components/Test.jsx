@@ -7,6 +7,8 @@ const Test = () => {
   const dispatch = useDispatch()
   const balance = useSelector(state => state.bank.balance)
   const customersList = useSelector(state => state.customers.customersList)
+  const customersStatus = useSelector(state => state.customers.customersStatus)
+  const customersError = useSelector(state => state.customers.customersError)
 
   const addMoney = (amount) => {
     dispatch(createAddMoneyAction(Number(amount))) // Пример: dispatch({ type: "addMoney", payload: 33 })
@@ -34,6 +36,11 @@ const Test = () => {
       <div style={{backgroundColor: '#000', marginTop: '20px'}}>
         <button onClick={() => addCustomer()}>Добавить клиента</button>
         <button onClick={() => dispatch(getCustomers())}>Получить клиентов из базы</button>
+
+        {customersStatus === 'loading' && <div>Загрузка...</div>}
+        {customersStatus === 'failed' && <div>Ошибка при загрузке клиентов: {customersError}</div>}
+        {customersStatus === 'succeeded' && <div>Клиенты успешно загружены</div>}
+
         {
           customersList.length > 0 ?
             <div>
