@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 
 import { createAddMoneyAction, createGetMoneyAction } from '@store/slices/bankSlice.js'
-import { createAddCustomerAction, createRemoveCustomerAction } from '@store/reducers/customersReducer.js'
-import { getCustomers } from '@store/thunks/customersThunks.js'
+import { createAddCustomerAction, createRemoveCustomerAction, getCustomers } from '@store/slices/customersSlice.js'
 
 const Test = () => {
   const dispatch = useDispatch()
@@ -19,18 +18,11 @@ const Test = () => {
 
   const addCustomer = () => {
     const customer = { id: customersList.length + 1, name: prompt("Введите имя клиента:") } // Пример: { id: 1, name: 'Tom' } // Можно использовать Date.now() в id
-    dispatch(createAddCustomerAction(customer)) // Пример: { type: "ADD_CUSTOMER", payload: { id: 1, name: 'Tom' } }
-
-    // Необязательно создавать функции-генераторы для actions
-    // dispatch({ type: "ADD_CUSTOMER", payload: { id: 1, name: "Свелана" } })
-    // dispatch({ type: "ADD_CUSTOMER", payload: { id: 2, name: "Миша" } })
+    dispatch(createAddCustomerAction(customer))
   }
 
   const removeCustomer = (id) => {
     dispatch(createRemoveCustomerAction(id))
-    
-    // Необязательно создавать функции-генераторы для actions
-    // dispatch({ type: "REMOVE_CUSTOMER", payload: 2 })
   }
 
   return (
